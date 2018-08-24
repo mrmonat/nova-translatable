@@ -32,6 +32,8 @@ Translatable::make('Description')->locales([
 
 The array key for example ```en``` has to match your locale key when using the translation package. The array value for example ```English``` defines label text of the locale.
 
+#### Single Line Option
+
 By default the input field on the edit view is a textarea. If you want to change it to a single line input field you can add the ```singleLine``` option:
 
 ```
