@@ -1,5 +1,7 @@
 # Nova Spatie Translatable Field
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mrmonat/nova-spatie-translatable.svg?style=flat-square)](https://packagist.org/packages/mrmonat/nova-spatie-translatable)
+
 Adds the ability to show end edit translated fields created with [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable) package.
 
 It will show up in the detail view like this:
