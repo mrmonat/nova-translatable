@@ -2,7 +2,7 @@
     <default-field :field="field">
         <template slot="field">
             <a 
-                class="inline-block font-bold cursor-pointer mr-2" 
+                class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none" 
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
                 :key="localeKey" 
                 v-for="(locale, localeKey) in field.locales"
