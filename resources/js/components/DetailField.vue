@@ -15,10 +15,12 @@
             <div 
                 class="mt-4"
                 :key="localeKey" 
-                v-for="(localeValue, localeKey) in field.value"
+                v-for="(locale, localeKey) in field.locales"
                 v-show="localeKey === currentLocale"
-                v-html="localeValue"
-            ></div>
+            >
+                <div v-if="field.value[localeKey]" v-html="field.value[localeKey]"></div>
+                <div v-else>—</div>
+            </div>
 
         </template>
     </panel-item>
@@ -32,6 +34,10 @@ export default {
         return {
             currentLocale: Object.keys(this.field.locales)[0]
         }
+    },
+
+    mounted() {
+        console.log(this.field.value)
     },
 
     methods: {
