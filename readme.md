@@ -6,7 +6,7 @@ It will show up in the detail view like this:
 
 <img width="400" src="https://mrmonat.de/github/images/nova-spatie-translatable-details.png">
 
-And in the index view like this:
+And in the edit view like this:
 
 <img width="400" src="https://mrmonat.de/github/images/nova-spatie-translatable-edit.png">
 
