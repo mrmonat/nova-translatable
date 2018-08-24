@@ -11,7 +11,7 @@
                 {{ locale }}
             </a>
 
-            <textarea :id="field.name + '-' + localeKey"
+            <textarea ref="field" :id="field.name + '-' + localeKey"
                 class="mt-4 w-full form-control form-input form-input-bordered py-3 min-h-textarea"
                 :class="errorClasses"
                 :placeholder="field.name"
@@ -20,9 +20,10 @@
                 v-for="(locale, localeKey) in field.locales"
                 v-show="localeKey === currentLocale"
                 v-if="!field.singleLine"
+                @keydown.tab="handleTab"
             ></textarea>
 
-            <input type="text" :id="field.name + '-' + localeKey"
+            <input ref="field" type="text" :id="field.name + '-' + localeKey"
                 class="mt-4 w-full form-control form-input form-input-bordered"
                 :class="errorClasses"
                 :placeholder="field.name"
@@ -31,6 +32,7 @@
                 v-for="(locale, localeKey) in field.locales"
                 v-show="localeKey === currentLocale"
                 v-if="field.singleLine"
+                @keydown.tab="handleTab"
             ></textarea>
 
             <p v-if="hasError" class="my-2 text-danger">
@@ -50,8 +52,13 @@ export default {
 
     data() {
         return {
-            currentLocale: Object.keys(this.field.locales)[0]
+            locales: Object.keys(this.field.locales),
+            currentLocale: null,
         }
+    },
+
+    mounted() {
+        this.currentLocale = this.locales[0] || null
     },
 
     methods: {
@@ -80,6 +87,25 @@ export default {
 
         changeTab(locale) {
             this.currentLocale = locale
+            this.$nextTick(() => {
+                const currentIndex = this.locales.indexOf(this.currentLocale)
+                this.$refs.field[currentIndex].focus()
+            })
+        },
+
+        handleTab(e) {
+            const currentIndex = this.locales.indexOf(this.currentLocale)
+            if (!e.shiftKey) {
+                if (currentIndex < this.locales.length - 1) {
+                    e.preventDefault()
+                    this.changeTab(this.locales[currentIndex + 1])
+                }
+            } else {
+                if (currentIndex > 0) {
+                    e.preventDefault()
+                    this.changeTab(this.locales[currentIndex - 1])
+                }
+            }
         }
     }
 }
