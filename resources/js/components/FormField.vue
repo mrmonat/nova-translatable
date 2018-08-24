@@ -11,7 +11,7 @@
                 {{ locale }}
             </a>
 
-            <textarea :id="field.name + '-' + localeKey" type="text"
+            <textarea :id="field.name + '-' + localeKey"
                 class="mt-4 w-full form-control form-input form-input-bordered py-3 min-h-textarea"
                 :class="errorClasses"
                 :placeholder="field.name"
@@ -19,6 +19,18 @@
                 :key="localeKey"
                 v-for="(locale, localeKey) in field.locales"
                 v-show="localeKey === currentLocale"
+                v-if="!field.singleLine"
+            ></textarea>
+
+            <input type="text" :id="field.name + '-' + localeKey"
+                class="mt-4 w-full form-control form-input form-input-bordered"
+                :class="errorClasses"
+                :placeholder="field.name"
+                v-model="value[localeKey]"
+                :key="localeKey"
+                v-for="(locale, localeKey) in field.locales"
+                v-show="localeKey === currentLocale"
+                v-if="field.singleLine"
             ></textarea>
 
             <p v-if="hasError" class="my-2 text-danger">

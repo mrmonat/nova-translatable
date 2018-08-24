@@ -50,4 +50,12 @@ class Translatable extends Field
     {
         return $this->withMeta(['locales' => $locales]);
     }
+
+    /**
+     * Set the input field to a single line text field.
+     */
+    public function singleLine()
+    {
+        return $this->withMeta(['singleLine' => true]);
+    }
 }
