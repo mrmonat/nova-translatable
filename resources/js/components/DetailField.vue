@@ -5,7 +5,7 @@
             <a 
                 class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none" 
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
-                :key="localeKey" 
+                :key="`a-${localeKey}`" 
                 v-for="(locale, localeKey) in field.locales"
                 @click="changeTab(localeKey)"
             >
@@ -14,7 +14,7 @@
 
             <div 
                 class="mt-4"
-                :key="localeKey" 
+                :key="`v-${localeKey}`" 
                 v-for="(locale, localeKey) in field.locales"
                 v-show="localeKey === currentLocale"
             >
@@ -34,10 +34,6 @@ export default {
         return {
             currentLocale: Object.keys(this.field.locales)[0]
         }
-    },
-
-    mounted() {
-        console.log(this.field.value)
     },
 
     methods: {
