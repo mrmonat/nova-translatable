@@ -4,36 +4,44 @@
             <a 
                 class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none" 
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
-                :key="localeKey" 
+                :key="`a-${localeKey}`" 
                 v-for="(locale, localeKey) in field.locales"
                 @click="changeTab(localeKey)"
             >
                 {{ locale }}
             </a>
 
-            <textarea ref="field" :id="field.name + '-' + localeKey"
+            <textarea
+                ref="field" 
+                :id="field.name"
                 class="mt-4 w-full form-control form-input form-input-bordered py-3 min-h-textarea"
                 :class="errorClasses"
                 :placeholder="field.name"
-                v-model="value[localeKey]"
-                :key="`a-${localeKey}`"
-                v-for="(locale, localeKey) in field.locales"
-                v-show="localeKey === currentLocale"
-                v-if="!field.singleLine"
+                v-model="value[currentLocale]"
+                v-if="!field.singleLine && !field.trix"
                 @keydown.tab="handleTab"
             ></textarea>
 
-            <input ref="field" type="text" :id="field.name + '-' + localeKey"
+             <trix
+                ref="field"
+                name="trixman"
+                :value="value[currentLocale]"
+                placeholder=""
+                @change="handleChange"
+                v-if="!field.singleField && field.trix"
+            />
+
+            <input 
+                ref="field" 
+                type="text" 
+                :id="field.name"
                 class="mt-4 w-full form-control form-input form-input-bordered"
                 :class="errorClasses"
                 :placeholder="field.name"
-                v-model="value[localeKey]"
-                :key="`v-${localeKey}`"
-                v-for="(locale, localeKey) in field.locales"
-                v-show="localeKey === currentLocale"
+                v-model="value[currentLocale]"
                 v-if="field.singleLine"
                 @keydown.tab="handleTab"
-            ></textarea>
+            />
 
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
@@ -43,12 +51,17 @@
 </template>
 
 <script>
+
+import Trix from '../Trix'
+
 import { FormField, HandlesValidationErrors } from 'laravel-nova'
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
     props: ['resourceName', 'resourceId', 'field'],
+
+    components: { Trix },
 
     data() {
         return {
@@ -66,7 +79,7 @@ export default {
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-          this.value = this.field.value || ''
+          this.value = this.field.value || {}
         },
 
         /**
@@ -82,14 +95,17 @@ export default {
          * Update the field's internal value.
          */
         handleChange(value) {
-          this.value = value
+          this.value[this.currentLocale] = value
         },
 
         changeTab(locale) {
             this.currentLocale = locale
             this.$nextTick(() => {
-                const currentIndex = this.locales.indexOf(this.currentLocale)
-                this.$refs.field[currentIndex].focus()
+                if (this.field.trix) {
+                    this.$refs.field.update()
+                } else {
+                    this.$refs.field.focus()
+                }
             })
         },
 

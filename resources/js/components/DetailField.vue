@@ -12,14 +12,9 @@
                 {{ locale }}
             </a>
 
-            <div 
-                class="mt-4"
-                :key="`v-${localeKey}`" 
-                v-for="(locale, localeKey) in field.locales"
-                v-show="localeKey === currentLocale"
-            >
-                <div v-if="field.value[localeKey]" v-html="field.value[localeKey]"></div>
-                <div v-else>—</div>
+            <div class="mt-4">
+                <span v-if="field.value[currentLocale]" v-html="field.value[currentLocale]"></span>
+                <span v-else>—</span>
             </div>
 
         </template>

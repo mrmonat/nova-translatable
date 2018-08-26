@@ -58,4 +58,12 @@ class Translatable extends Field
     {
         return $this->withMeta(['singleLine' => true]);
     }
+
+    /**
+     * Use Trix Editor.
+     */
+    public function trix()
+    {
+        return $this->withMeta(['trix' => true]);
+    }
 }
