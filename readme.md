@@ -1,5 +1,5 @@
 # Nova Spatie Translatable Field
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mrmonat/nova-spatie-translatable.svg?style=flat-square)](https://packagist.org/packages/mrmonat/nova-spatie-translatable)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mrmonat/nova-translatable.svg?style=flat-square)](https://packagist.org/packages/mrmonat/nova-translatable)
 
 Adds the ability to show and edit translated fields created with [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable) package.
 
@@ -15,7 +15,7 @@ And in the edit view like this:
 You can require this package using composer:
 
 ```
-composer require mrmonat/nova-spatie-translatable
+composer require mrmonat/nova-translatable
 ```
 
 You can add the field follows:
@@ -27,7 +27,7 @@ Translatable::make('Description'),
 ```
 
 ### Defining Locales
-Locales can be defined via config file ```config/translatable.php``` (This config file can be created via spatie/laravel-localize package) by adding a ```locales``` array:
+Locales can be defined via config file ```config/translatable.php``` (config file can be created via [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable) package) by adding a ```locales``` array:
 
 ```
 // config/translatable.php
