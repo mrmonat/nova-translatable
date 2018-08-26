@@ -27,7 +27,7 @@ Translatable::make('Description'),
 ```
 
 ### Defining Locales
-Locales can be defined via config file ```config/translatable.php``` (config file can be created via [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable) package) by adding a ```locales``` array:
+Locales can be defined via config file ```config/translatable.php``` (config file can be created via [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable#installation) package) by adding a ```locales``` array:
 
 ```
 // config/translatable.php
@@ -51,7 +51,7 @@ Translatable::make('Description')->locales([
 ```
 
 ### Single Line Option
-By default the input field on the edit view is a textarea. If you want to change it to a single line input field you can add the ```singleLine``` option:
+By default the input field on the edit view is a textarea. If you want to change it to a single line input field you can add the ```singleLine()``` option:
 
 ```
 Translatable::make('Description')->locales([...])->singleLine(),
