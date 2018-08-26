@@ -20,25 +20,60 @@ You can require this package using composer:
 composer require mrmonat/nova-spatie-translatable
 ```
 
-You can add the field with defined locales to show as follows:
+You can add the field follows:
 
 ```
 use MrMonat\Translatable\Translatable;
 
+Translatable::make('Description'),
+```
+
+### Defining Locales
+
+Locales can be defined via config file ```config/translatable.php``` (This config file can be created via spatie/laravel-localize package) by adding a ```locales``` array:
+
+```
+// config/translatable.php
+return [
+    ...
+    'locales' => [
+        'en' => 'English',
+        'de' => 'German',
+        'fr' => 'French',
+    ],
+];
+```
+
+Alternatively you can "override" the config locales with the ```locales(...)``` method:
+
+```
 Translatable::make('Description')->locales([
     'en' => 'English',
     'de' => 'German',
-    'fr' => 'French',
-]);
+]),
 ```
 
-The array key for example ```en``` has to match your locale key when using the translation package. The array value for example ```English``` defines label text of the locale.
-
-#### Single Line Option
+### Single Line Option
 
 By default the input field on the edit view is a textarea. If you want to change it to a single line input field you can add the ```singleLine``` option:
 
 ```
-Translatable::make('Description')->locales([...])->singleLine();
+Translatable::make('Description')->locales([...])->singleLine(),
+```
+
+### Trix Editor
+
+You can use the trix editor for your translated fields by using the ```trix()``` option:
+
+```
+Translatable::make('Description')->trix(),
+```
+
+### Index View
+
+By default the locale used when displaying the field on the index view is determined by ```app()->getLocale()```. To override this you can use the ```indexLocale($locale)``` option:
+
+```
+Translatable::make('Description')->indexLocale('de'),
 ```
 
