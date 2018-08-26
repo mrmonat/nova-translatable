@@ -25,7 +25,8 @@ class Translatable extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->hideFromIndex();
+        $this->withMeta(['locales' => config('translatable.locales')]);
+        $this->withMeta(['indexLocale' => app()->getLocale()]);
     }
 
     /**
@@ -49,6 +50,17 @@ class Translatable extends Field
     public function locales(array $locales)
     {
         return $this->withMeta(['locales' => $locales]);
+    }
+
+    /**
+     * Set the locale to display on index.
+     *
+     * @param  string $locale
+     * @return $this
+     */
+    public function indexLocale($locale)
+    {
+        return $this->withMeta(['indexLocale' => $locale]);
     }
 
     /**
