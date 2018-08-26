@@ -1,5 +1,5 @@
 {
-    "name": "mrmonat/nova-spatie-translatable",
+    "name": "mrmonat/nova-translatable",
     "description": "A Laravel Nova field for spatie/laravel-translatable.",
     "keywords": [
         "laravel",
