@@ -22,14 +22,16 @@
                 @keydown.tab="handleTab"
             ></textarea>
 
-             <trix
-                ref="field"
-                name="trixman"
-                :value="value[currentLocale]"
-                placeholder=""
-                @change="handleChange"
-                v-if="!field.singleField && field.trix"
-            />
+            <div v-if="!field.singleField && field.trix" class="mt-4">
+                <trix
+                    ref="field"
+                    name="trixman"
+                    :value="value[currentLocale]"
+                    placeholder=""
+                    @change="handleChange"
+                    
+                />
+            </div>
 
             <input 
                 ref="field" 
