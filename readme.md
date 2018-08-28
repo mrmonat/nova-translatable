@@ -26,6 +26,27 @@ use MrMonat\Translatable\Translatable;
 Translatable::make('Description'),
 ```
 
+Make sure, that you have your Eloquent model setup correct:
+
+- First, you need to add the `Spatie\Translatable\HasTranslations`-trait.
+- Next, you should create a public property `$translatable` which holds an array with all the names of attributes you wish to make translatable.
+- Finally, you should make sure that all translatable attributes are set to the `text`-datatype in your database. If your database supports `json`-columns, use that.
+
+Here's an example of a prepared model:
+
+``` php
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
+class NewsItem extends Model
+{
+    use HasTranslations;
+    
+    public $translatable = ['name'];
+}
+```
+
+
 ### Defining Locales
 Locales can be defined via config file ```config/translatable.php``` (config file can be created via [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable#installation) package) by adding a ```locales``` array:
 
