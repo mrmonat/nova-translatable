@@ -25,7 +25,11 @@ class Translatable extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->withMeta(['locales' => config('translatable.locales')]);
+        foreach ($locales = config('translatable.locales') as $key => $value) {
+            $locales[$key] = __($value);
+        }
+
+        $this->withMeta(compact('locales'));
         $this->withMeta(['indexLocale' => app()->getLocale()]);
     }
 
