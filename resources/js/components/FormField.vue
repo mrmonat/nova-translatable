@@ -57,6 +57,7 @@
 import Trix from '../Trix'
 
 import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import { EventBus } from '../event-bus';
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
@@ -74,6 +75,12 @@ export default {
 
     mounted() {
         this.currentLocale = this.locales[0] || null
+
+        EventBus.$on('localeChanged', locale => {
+            if(this.currentLocale !== locale) {
+                this.changeTab(locale, true);
+            }
+        });
     },
 
     methods: {
@@ -100,8 +107,12 @@ export default {
           this.value[this.currentLocale] = value
         },
 
-        changeTab(locale) {
+        changeTab(locale, dontEmit) {
             this.currentLocale = locale
+            if(!dontEmit){
+                EventBus.$emit('localeChanged', locale);
+            }
+
             this.$nextTick(() => {
                 if (this.field.trix) {
                     this.$refs.field.update()
