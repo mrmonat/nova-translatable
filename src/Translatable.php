@@ -44,7 +44,10 @@ class Translatable extends Field
      */
     protected function resolveAttribute($resource, $attribute)
     {
-        return $resource->getTranslations($attribute);
+        if (method_exists($resource, 'getTranslations')) {
+            return $resource->getTranslations($attribute);
+        }
+        return data_get($resource, $attribute);
     }
 
     /**
