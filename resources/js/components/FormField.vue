@@ -1,6 +1,13 @@
 <template>
-    <default-field :field="field">
-        <template slot="field">
+    <field-wrapper>
+        <div class="w-1/5 px-8 py-6">
+            <slot>
+                <form-label :for="field.name">
+                    {{ field.name }}
+                </form-label>
+            </slot>
+        </div>
+        <div class="px-8 py-6" :class="computedWidth">
             <a 
                 class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none" 
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
@@ -29,7 +36,6 @@
                     :value="value[currentLocale]"
                     placeholder=""
                     @change="handleChange"
-                    
                 />
             </div>
 
@@ -48,8 +54,8 @@
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
             </p>
-        </template>
-    </default-field>
+        </div>
+    </field-wrapper>
 </template>
 
 <script>
@@ -123,6 +129,15 @@ export default {
                     e.preventDefault()
                     this.changeTab(this.locales[currentIndex - 1])
                 }
+            }
+        }
+    },
+
+    computed: {
+        computedWidth() {
+            return {
+                'w-1/2': !this.field.trix,
+                'w-4/5': this.field.trix
             }
         }
     }
