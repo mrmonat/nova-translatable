@@ -9,7 +9,7 @@
         </div>
         <div class="px-8 py-6" :class="computedWidth">
             <a 
-                class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none" 
+                class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none border-primary" 
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
                 :key="`a-${localeKey}`" 
                 v-for="(locale, localeKey) in field.locales"
