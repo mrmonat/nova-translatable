@@ -87,4 +87,12 @@ class Translatable extends Field
     {
         return $this->withMeta(['trix' => true]);
     }
+
+    /**
+     * Display the field as raw HTML.
+     */
+    public function asHtml()
+    {
+        return $this->withMeta(['asHtml' => true]);
+    }
 }

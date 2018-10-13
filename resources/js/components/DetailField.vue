@@ -13,8 +13,8 @@
             </a>
 
             <div class="mt-4">
-                <span v-if="field.value[currentLocale]" v-html="field.value[currentLocale]"></span>
-                <span v-else>—</span>
+                <div v-if="field.asHtml" v-html="value"></div>
+                <span v-else>{{ value }}</span>
             </div>
 
         </template>
@@ -35,6 +35,12 @@ export default {
         changeTab(locale) {
             this.currentLocale = locale
         }
-    }
+    },
+
+    computed: {
+        value() {
+            return this.field.value[this.currentLocale] || '—'
+        }
+    },
 }
 </script>
