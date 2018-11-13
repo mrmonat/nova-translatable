@@ -29,7 +29,7 @@
                 @keydown.tab="handleTab"
             ></textarea>
 
-            <div v-if="!field.singleField && field.trix" class="mt-4">
+            <div v-if="!field.singleField && field.trix" @keydown.stop class="mt-4">
                 <trix
                     ref="field"
                     name="trixman"
