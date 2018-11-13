@@ -95,4 +95,12 @@ class Translatable extends Field
     {
         return $this->withMeta(['asHtml' => true]);
     }
+
+    /**
+     * Truncate on Detail Page.
+     */
+    public function truncate()
+    {
+        return $this->withMeta(['truncate' => true]);
+    }
 }

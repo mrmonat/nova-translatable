@@ -14,7 +14,7 @@
 
             <div class="mt-4">
                 <div v-if="field.asHtml" v-html="value"></div>
-                <div v-else class="truncate">{{ value }}</div>
+                <div v-else :class="{ 'truncate': field.truncate }">{{ value }}</div>
             </div>
 
         </template>
