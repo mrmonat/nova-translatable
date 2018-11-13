@@ -54,6 +54,9 @@
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
             </p>
+            <help-text class="help-text mt-2" v-if="field.helpText">
+                {{ field.helpText }}
+            </help-text>
         </div>
     </field-wrapper>
 </template>
