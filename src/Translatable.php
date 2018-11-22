@@ -1,6 +1,6 @@
 <?php
 
-namespace MrMonat\Translatable;
+namespace WebId\Translatable;
 
 use Laravel\Nova\Fields\Field;
 

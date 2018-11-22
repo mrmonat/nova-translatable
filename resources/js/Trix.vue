@@ -1,30 +1,67 @@
 <script>
-import 'trix/dist/trix.css'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { quillEditor } from 'vue-quill-editor';
 
 export default {
     name: 'trix-vue',
     props: ['name', 'value', 'placeholder'],
+    components: {
+        quillEditor
+    },
+    data() {
+        return {
+            editorOption: {
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote'],
+                        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
+                        [{'color': []}, {'background': []}],
+                        [{'align': ['right', 'justify']}],
+                        ['clean'],
+                        ['link', 'image', 'video']
+                    ],
+                },
+                placeholder: this.placeholder
+            },
+            content: null,
+            init: false
+        }
+    },
+
+    mounted: () => {
+        this.content = this.value;
+    },
+
     methods: {
         update() {
-            this.$refs.theEditor.editor.loadHTML(this.value)
+            this.content = this.value;
         },
-        onInitialize() {
-            this.$refs.theEditor.editor.insertHTML(this.value)
-        },
+
         onChange() {
             this.$emit('change', this.$refs.theEditor.value)
         },
+    },
+
+    watch: {
+        'value': function(newValue) {
+            if(!this.init) {
+                this.content = this.value;
+                this.init = true;
+            }
+        }
     }
 }
 </script>
 
 <template>
-    <trix-editor
-        ref="theEditor"
-        @trix-change="onChange"
-        @trix-initialize="onInitialize"
-        @trix-file-accept="e => e.preventDefault()"
-        :value="value"
-        :placeholder="placeholder"
-    />
+
+    <quill-editor ref="theEditor"
+                  v-model="content"
+                  :options="editorOption"
+                  @change="onChange">
+    </quill-editor>
 </template>

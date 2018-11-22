@@ -1,5 +1,5 @@
 {
-    "name": "mrmonat/nova-translatable",
+    "name": "web-id/nova-translatable",
     "description": "A Laravel Nova field for spatie/laravel-translatable.",
     "keywords": [
         "laravel",
@@ -13,13 +13,13 @@
     },
     "autoload": {
         "psr-4": {
-            "MrMonat\\Translatable\\": "src/"
+            "WebId\\Translatable\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "MrMonat\\Translatable\\FieldServiceProvider"
+                "WebId\\Translatable\\FieldServiceProvider"
             ]
         }
     },
