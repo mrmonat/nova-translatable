@@ -20,8 +20,6 @@ export default {
                         [{'header': [1, 2, 3, 4, 5, 6, false]}],
                         [{'list': 'ordered'}, {'list': 'bullet'}],
                         [{'color': []}, {'background': []}],
-                        [{'align': ['right', 'justify']}],
-                        ['clean'],
                         ['link', 'image', 'video']
                     ],
                 },
