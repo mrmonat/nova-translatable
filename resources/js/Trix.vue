@@ -40,7 +40,7 @@ export default {
         },
 
         onChange() {
-            this.$emit('change', this.$refs.theEditor.value)
+            this.$emit('change', this.$refs.theEditor._content)
         },
     },
 
