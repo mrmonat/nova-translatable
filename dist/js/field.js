@@ -869,7 +869,7 @@ var _this = this;
             config: {
                 menubar: false,
                 plugins: "textcolor emoticons preview",
-                toolbar: "undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | emoticons"
+                toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link | emoticons"
             }
         };
     },
