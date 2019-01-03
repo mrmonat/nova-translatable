@@ -864,6 +864,12 @@ var _this = this;
     },
     data: function data() {
         return {
+            editorOption: {
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline', 'strike'], ['blockquote'], [{ 'header': [1, 2, 3, 4, 5, 6, false] }], [{ 'list': 'ordered' }, { 'list': 'bullet' }], [{ 'color': [] }, { 'background': [] }], [{ 'align': ['right', 'justify'] }], ['clean'], ['link', 'image', 'video']]
+                },
+                placeholder: this.placeholder
+            },
             content: null,
             init: false
         };
@@ -879,7 +885,7 @@ var _this = this;
             this.content = this.value;
         },
         onChange: function onChange() {
-            this.$emit('change', this.$refs.theEditor.value);
+            this.$emit('change', this.$refs.theEditor._content);
         }
     },
 
@@ -11535,3 +11541,9 @@ if (false) {
 
 /***/ })
 /******/ ]);
+            editorOption: {
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline', 'strike'], ['blockquote'], [{ 'header': [1, 2, 3, 4, 5, 6, false] }], [{ 'list': 'ordered' }, { 'list': 'bullet' }], [{ 'color': [] }, { 'background': [] }], ['link', 'image', 'video']]
+                },
+                placeholder: this.placeholder
+            },
