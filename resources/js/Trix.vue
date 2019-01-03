@@ -10,7 +10,12 @@
         data() {
             return {
                 content: null,
-                init: false
+                init: false,
+                config: {
+                    menubar: false,
+                    plugins: "textcolor emoticons preview",
+                    toolbar: "undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | emoticons"
+                }
             }
         },
 
@@ -43,5 +48,10 @@
 </script>
 
 <template>
-    <editor v-model="content" ref="theEditor" @change="onChange" api-key="qw068v96pacv2vfc9nc69wnpkc3h3jzdsz643l6ioup1icd7"></editor>
+    <editor v-model="content"
+            ref="theEditor"
+            @change="onChange"
+            api-key="qw068v96pacv2vfc9nc69wnpkc3h3jzdsz643l6ioup1icd7"
+            :init="config"
+    ></editor>
 </template>

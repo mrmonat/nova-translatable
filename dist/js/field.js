@@ -865,7 +865,12 @@ var _this = this;
     data: function data() {
         return {
             content: null,
-            init: false
+            init: false,
+            config: {
+                menubar: false,
+                plugins: "textcolor emoticons preview",
+                toolbar: "undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | emoticons"
+            }
         };
     },
 
@@ -1137,7 +1142,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("editor", {
     ref: "theEditor",
-    attrs: { "api-key": "qw068v96pacv2vfc9nc69wnpkc3h3jzdsz643l6ioup1icd7" },
+    attrs: {
+      "api-key": "qw068v96pacv2vfc9nc69wnpkc3h3jzdsz643l6ioup1icd7",
+      init: _vm.config
+    },
     on: { change: _vm.onChange },
     model: {
       value: _vm.content,
