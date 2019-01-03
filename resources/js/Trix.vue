@@ -24,7 +24,7 @@
             },
 
             onChange() {
-                this.$emit('change', this.$refs.theEditor.value)
+                this.$emit('change', this.content)
             },
         },
 
@@ -34,6 +34,9 @@
                     this.content = this.value;
                     this.init = true;
                 }
+            },
+            'content': function(newValue) {
+                this.$emit('change', this.content);
             }
         }
     }
