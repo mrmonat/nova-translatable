@@ -868,8 +868,8 @@ var _this = this;
             init: false,
             config: {
                 menubar: false,
-                plugins: "textcolor emoticons preview",
-                toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link | emoticons"
+                plugins: "textcolor preview",
+                toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link"
             }
         };
     },
