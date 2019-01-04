@@ -1,65 +1,58 @@
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor';
+    import Editor from '@tinymce/tinymce-vue';
 
-export default {
-    name: 'trix-vue',
-    props: ['name', 'value', 'placeholder'],
-    components: {
-        quillEditor
-    },
-    data() {
-        return {
-            editorOption: {
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        ['blockquote'],
-                        [{'header': [1, 2, 3, 4, 5, 6, false]}],
-                        [{'list': 'ordered'}, {'list': 'bullet'}],
-                        [{'color': []}, {'background': []}],
-                        ['link', 'image', 'video']
-                    ],
-                },
-                placeholder: this.placeholder
-            },
-            content: null,
-            init: false
-        }
-    },
+    export default {
+        name: 'trix-vue',
+        props: ['name', 'value', 'placeholder'],
+        components: {
+            'editor': Editor
+        },
+        data() {
+            return {
+                content: null,
+                init: false,
+                config: {
+                    menubar: false,
+                    plugins: "textcolor preview",
+                    toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link",
+                    forced_root_block: "div"
+                }
+            }
+        },
 
-    mounted: () => {
-        this.content = this.value;
-    },
-
-    methods: {
-        update() {
+        mounted: () => {
             this.content = this.value;
         },
 
-        onChange() {
-            this.$emit('change', this.$refs.theEditor._content)
-        },
-    },
-
-    watch: {
-        'value': function(newValue) {
-            if(!this.init) {
+        methods: {
+            update() {
                 this.content = this.value;
-                this.init = true;
+            },
+
+            onChange() {
+                this.$emit('change', this.content)
+            },
+        },
+
+        watch: {
+            'value': function (newValue) {
+                if (!this.init) {
+                    this.content = this.value;
+                    this.init = true;
+                }
+            },
+            'content': function(newValue) {
+                this.$emit('change', this.content);
             }
         }
     }
-}
 </script>
 
 <template>
-
-    <quill-editor ref="theEditor"
-                  v-model="content"
-                  :options="editorOption"
-                  @change="onChange">
-    </quill-editor>
+    <editor v-model="content"
+            ref="theEditor"
+            @change="onChange"
+            api-key="qw068v96pacv2vfc9nc69wnpkc3h3jzdsz643l6ioup1icd7"
+            :init="config"
+    ></editor>
 </template>
