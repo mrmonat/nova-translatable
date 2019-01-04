@@ -869,7 +869,8 @@ var _this = this;
             config: {
                 menubar: false,
                 plugins: "textcolor preview",
-                toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link"
+                toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link",
+                forced_root_block: "div"
             }
         };
     },
