@@ -758,7 +758,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Update the field's internal value.
          */
         handleChange: function handleChange(value) {
-            //console.log('parent', value);
+            console.log('parent', value);
             this.value[this.currentLocale] = value;
         },
         changeTab: function changeTab(locale) {
