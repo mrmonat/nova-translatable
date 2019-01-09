@@ -106,7 +106,7 @@ export default {
          * Update the field's internal value.
          */
         handleChange(value) {
-            //console.log('parent', value);
+          console.log('parent', value);
           this.value[this.currentLocale] = value
         },
 
