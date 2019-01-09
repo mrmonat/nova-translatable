@@ -12,6 +12,8 @@
                 content: null,
                 init: false,
                 config: {
+                    entity_encoding : "raw",
+                    encoding: "UTF-8",
                     menubar: false,
                     plugins: "textcolor preview link",
                     toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link",
@@ -43,6 +45,7 @@
             },
             'content': function(newValue) {
                 this.$emit('change', this.content);
+                console.log(this.content);
             }
         }
     }

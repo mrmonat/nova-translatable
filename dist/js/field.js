@@ -758,6 +758,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Update the field's internal value.
          */
         handleChange: function handleChange(value) {
+            //console.log('parent', value);
             this.value[this.currentLocale] = value;
         },
         changeTab: function changeTab(locale) {
@@ -867,6 +868,8 @@ var _this = this;
             content: null,
             init: false,
             config: {
+                entity_encoding: "raw",
+                encoding: "UTF-8",
                 menubar: false,
                 plugins: "textcolor preview link",
                 toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link",
@@ -898,6 +901,7 @@ var _this = this;
         },
         'content': function content(newValue) {
             this.$emit('change', this.content);
+            console.log(this.content);
         }
     }
 });
