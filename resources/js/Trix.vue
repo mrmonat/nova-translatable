@@ -45,7 +45,6 @@
             },
             'content': function(newValue) {
                 this.$emit('change', this.content);
-                console.log(this.content);
             }
         }
     }

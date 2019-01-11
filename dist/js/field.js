@@ -699,16 +699,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -729,7 +719,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        this.currentLocale = this.locales[0] || null;
+        var _this = this;
+
+        this.currentLocale = document.querySelector('#select-language-translatable').value;
+        Nova.$on('change-language', function (lang) {
+            _this.changeTab(lang);
+        });
     },
 
 
@@ -746,10 +741,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Fill the given FormData object with the field's internal value.
          */
         fill: function fill(formData) {
-            var _this = this;
+            var _this2 = this;
 
             Object.keys(this.value).forEach(function (locale) {
-                formData.append(_this.field.attribute + '[' + locale + ']', _this.value[locale] || '');
+                formData.append(_this2.field.attribute + '[' + locale + ']', _this2.value[locale] || '');
             });
         },
 
@@ -758,18 +753,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Update the field's internal value.
          */
         handleChange: function handleChange(value) {
-            console.log('parent', value);
             this.value[this.currentLocale] = value;
         },
         changeTab: function changeTab(locale) {
-            var _this2 = this;
+            var _this3 = this;
 
             this.currentLocale = locale;
             this.$nextTick(function () {
-                if (_this2.field.trix) {
-                    _this2.$refs.field.update();
-                } else {
-                    _this2.$refs.field.focus();
+                if (_this3.field.trix) {
+                    _this3.$refs.field.update();
                 }
             });
         },
@@ -901,7 +893,6 @@ var _this = this;
         },
         'content': function content(newValue) {
             this.$emit('change', this.content);
-            console.log(this.content);
         }
     }
 });
@@ -11392,27 +11383,6 @@ var render = function() {
       "div",
       { staticClass: "px-8 py-6", class: _vm.computedWidth },
       [
-        _vm._l(_vm.field.locales, function(locale, localeKey) {
-          return _c(
-            "a",
-            {
-              key: "a-" + localeKey,
-              staticClass:
-                "inline-block font-bold cursor-pointer mr-2 animate-text-color select-none border-primary",
-              class: {
-                "text-60": localeKey !== _vm.currentLocale,
-                "text-primary border-b-2": localeKey === _vm.currentLocale
-              },
-              on: {
-                click: function($event) {
-                  _vm.changeTab(localeKey)
-                }
-              }
-            },
-            [_vm._v("\n            " + _vm._s(locale) + "\n        ")]
-          )
-        }),
-        _vm._v(" "),
         !_vm.field.singleLine && !_vm.field.trix
           ? _c("textarea", {
               directives: [
@@ -11529,7 +11499,7 @@ var render = function() {
             ])
           : _vm._e()
       ],
-      2
+      1
     )
   ])
 }
