@@ -28,7 +28,7 @@
 
         methods: {
             update() {
-                this.content = this.value;
+                this.content = this.value == undefined ? '' : this.value;
             },
 
             onChange() {

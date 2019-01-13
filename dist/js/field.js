@@ -877,7 +877,7 @@ var _this = this;
 
     methods: {
         update: function update() {
-            this.content = this.value;
+            this.content = this.value == undefined ? '' : this.value;
         },
         onChange: function onChange() {
             this.$emit('change', this.content);
