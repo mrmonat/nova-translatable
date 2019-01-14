@@ -493,17 +493,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['resource', 'resourceName', 'resourceId', 'field'],
@@ -512,6 +501,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             currentLocale: Object.keys(this.field.locales)[0]
         };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.currentLocale = document.querySelector('#select-language-translatable').value;
+        Nova.$on('change-language', function (lang) {
+            _this.changeTab(lang);
+        });
     },
 
 
@@ -540,41 +537,15 @@ var render = function() {
     "panel-item",
     { attrs: { field: _vm.field } },
     [
-      _c(
-        "template",
-        { slot: "value" },
-        [
-          _vm._l(_vm.field.locales, function(locale, localeKey) {
-            return _c(
-              "a",
-              {
-                key: "a-" + localeKey,
-                staticClass:
-                  "inline-block font-bold cursor-pointer mr-2 animate-text-color select-none border-primary",
-                class: {
-                  "text-60": localeKey !== _vm.currentLocale,
-                  "text-primary border-b-2": localeKey === _vm.currentLocale
-                },
-                on: {
-                  click: function($event) {
-                    _vm.changeTab(localeKey)
-                  }
-                }
-              },
-              [_vm._v("\n            " + _vm._s(locale) + "\n        ")]
-            )
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "mt-4" }, [
-            _vm.field.asHtml
-              ? _c("div", { domProps: { innerHTML: _vm._s(_vm.value) } })
-              : _c("div", { class: { truncate: _vm.field.truncate } }, [
-                  _vm._v(_vm._s(_vm.value))
-                ])
-          ])
-        ],
-        2
-      )
+      _c("template", { slot: "value" }, [
+        _c("div", { staticClass: "mt-4" }, [
+          _vm.field.asHtml
+            ? _c("div", { domProps: { innerHTML: _vm._s(_vm.value) } })
+            : _c("div", { class: { truncate: _vm.field.truncate } }, [
+                _vm._v(_vm._s(_vm.value))
+              ])
+        ])
+      ])
     ],
     2
   )
