@@ -13,10 +13,11 @@
                 init: false,
                 config: {
                     entity_encoding : "raw",
+                    theme_advanced_buttons2 : "code,",
                     encoding: "UTF-8",
                     menubar: false,
                     plugins: "textcolor preview link",
-                    toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link",
+                    toolbar: "undo redo | formatselect | bold italic strikethrough underline forecolor backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link code",
                     forced_root_block: "div"
                 }
             }
