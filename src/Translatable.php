@@ -89,6 +89,14 @@ class Translatable extends Field
     }
 
     /**
+     * Use Tiptap Editor.
+     */
+    public function tiptap()
+    {
+        return $this->withMeta(['tiptap' => true]);
+    }
+
+    /**
      * Display the field as raw HTML.
      */
     public function asHtml()
@@ -102,5 +110,31 @@ class Translatable extends Field
     public function truncate()
     {
         return $this->withMeta(['truncate' => true]);
+    }
+    
+        /**
+     * Set the buttons that should be available in the menu.
+     *
+     * @param  array  $buttons
+     * @return $this
+     */
+    public function buttons(array $buttons)
+    {
+        return $this->withMeta([
+            'buttons' => $buttons
+        ]);
+    }
+    
+        /**
+     * Set the heading levels that should be available when using headings
+     *
+     * @param  int  $headingLevels
+     * @return $this
+     */
+    public function headingLevels($headingLevels)
+    {
+        return $this->withMeta([
+            'headingLevels' => $headingLevels
+        ]);
     }
 }

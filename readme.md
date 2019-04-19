@@ -85,6 +85,51 @@ You can use the trix editor for your translated fields by using the ```trix()```
 Translatable::make('Description')->trix(),
 ```
 
+
+### TipTap Editor with Mention Plugin
+
+You can use the tiptap editor for your translated fields by using the ```tiptap()``` option.
+
+In addtion the mention / suggestions plugin has been integrated, see demo on https://tiptap.scrumpy.io/suggestions
+
+```
+Translatable::make('Message')
+->tiptap()
+->buttons(['bold', 'italic', 'heading', 'link', 'ordered_list', 'bullet_list', 'blockquote', 'undo', 'redo'])
+->help(__('Press @ to insert mentions'))
+,
+```
+
+
+You need to implement a controller, which delivers the mention / suggestions:
+
+
+```
+class MentionItemsController
+{
+    public function index(NovaRequest $request)
+    {
+        // available parameters
+        $request->resource;
+        $request->field;
+
+        return [
+            ['id' => 1, "name" => 'user.firstname']
+        ];
+
+
+    }
+}
+```
+
+The following code snippet transforms the mention fields into a mustache placeholder
+```
+$string = preg_replace('#<span class="mention"([^>]*?)>@(.*?)</span>#', '{{$2}}', $string);
+```
+which you can parse using `$mustache->render()`
+
+
+
 ### Index View
 By default the locale used when displaying the field on the index view is determined by ```app()->getLocale()```. To override this you can use the ```indexLocale($locale)``` option:
 
