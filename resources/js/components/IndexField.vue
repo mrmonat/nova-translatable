@@ -4,12 +4,23 @@
 </template>
 
 <script>
-export default {
-    props: ['resourceName', 'field'],
-    computed: {
-        value() {
-            return this.field.value[this.field.indexLocale] || '—'
+    export default {
+        props: ['resourceName', 'field'],
+        mounted() {
+            this.language = document.querySelector('#select-language-translatable').value;
+            Nova.$on('change-language', (lang) => {
+                this.language = lang;
+            });
+        },
+        data() {
+            return {
+                language: null
+            }
+        },
+        computed: {
+            value() {
+                return this.field.value[this.language] || '—'
+            }
         }
     }
-}
 </script>
