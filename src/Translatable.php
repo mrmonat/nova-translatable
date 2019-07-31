@@ -96,8 +96,8 @@ class Translatable extends Field
     public function tiny($config = [])
     {
         $this->asHtml();
-
-        return $this->withMeta(['tiny' => true, 'tiny_config' => array_merge([
+ return $this->withMeta(['tiny' => true, 'tiny_config' =>
+            array_merge([
                 'path_absolute' => '/',
                 'plugins' => [
                     'lists preview hr anchor pagebreak',
@@ -109,8 +109,8 @@ class Translatable extends Field
                 'relative_urls' => false,
                 'use_lfm' => false,
                 'lfm_url' => 'laravel-filemanager'
-            ]
-        )], $config);
+            ], $config)
+        ]);
     }
 
     /**
