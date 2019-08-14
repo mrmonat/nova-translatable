@@ -1,4 +1,22 @@
 // Nova Tool CSS
 .animate-text-color {
-    transition: color .5s;
+  transition: color .5s;
+}
+
+.vue-tags-input {
+  max-width: 100% !important;
+}
+
+.ti-input {
+  border-width: 1px;
+  border-color: var(--60);
+  border-radius: .5rem;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
+}
+
+.ti-input:focus {
+    outline: none;
+    -webkit-box-shadow: 0 0 8px var(--primary);
+    box-shadow: 0 0 8px var(--primary)
 }

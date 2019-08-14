@@ -88,6 +88,15 @@ class Translatable extends Field
         return $this->withMeta(['trix' => true]);
     }
 
+
+    /**
+     * Use Trix Editor.
+     */
+    public function tags()
+    {
+        return $this->withMeta(['tags' => true]);
+    }
+
     /**
      * use tiny editor
      * @param array $config
@@ -96,7 +105,8 @@ class Translatable extends Field
     public function tiny($config = [])
     {
         $this->asHtml();
- return $this->withMeta(['tiny' => true, 'tiny_config' =>
+
+        return $this->withMeta(['tiny' => true, 'tiny_config' =>
             array_merge([
                 'path_absolute' => '/',
                 'plugins' => [

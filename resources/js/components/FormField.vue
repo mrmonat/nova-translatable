@@ -25,11 +25,11 @@
                     :class="errorClasses"
                     :placeholder="field.name"
                     v-model="value[currentLocale]"
-                    v-if="!field.singleLine && !field.trix && !field.tiny"
+                    v-if="isTextArea"
                     @keydown.tab="handleTab"
             ></textarea>
 
-            <div v-if="!field.singleField && field.trix" @keydown.stop class="mt-4">
+            <div v-if="isTrix" @keydown.stop class="mt-4">
                 <trix
                         ref="field"
                         name="trixman"
@@ -39,7 +39,7 @@
                 />
             </div>
 
-            <div v-if="!field.singleField && field.tiny" class="mt-4">
+            <div v-if="isTiny" class="mt-4">
                 <tiny
                         ref="field"
                         :name="field.attribute"
@@ -58,8 +58,18 @@
                     :class="errorClasses"
                     :placeholder="field.name"
                     v-model="value[currentLocale]"
-                    v-if="field.singleLine"
+                    v-if="isSingle"
                     @keydown.tab="handleTab"
+            />
+
+            <tag
+                    v-if="isTags"
+                    class="mt-4 w-full form-control"
+                    ref="field"
+                    :name="field.attribute"
+                    :value="value[currentLocale]"
+                    :placeholder="field.name"
+                    @change="handleChange"
             />
 
             <p v-if="hasError" class="my-2 text-danger">
@@ -76,6 +86,7 @@
 
     import Trix from '../Trix'
     import Tiny from '../Tiny'
+    import Tag from '../Tag'
 
     import {FormField, HandlesValidationErrors} from 'laravel-nova'
 
@@ -86,6 +97,7 @@
 
         components: {
             Trix,
+            Tag,
             Tiny
         },
         data() {
@@ -121,13 +133,12 @@
              */
             handleChange(value) {
                 this.value[this.currentLocale] = value
-                // console.log(value);
             },
 
             changeTab(locale) {
                 this.currentLocale = locale
                 this.$nextTick(() => {
-                    if (this.field.trix || this.field.tiny) {
+                    if (this.isTrix || this.isTiny || this.isTags) {
                         this.$refs.field.update()
                     } else {
                         this.$refs.field.focus()
@@ -157,6 +168,21 @@
                     'w-1/2': !this.field.trix || !this.field.tiny,
                     'w-4/5': this.field.trix || this.field.tiny
                 }
+            },
+            isTextArea() {
+                return !this.field.singleLine && !this.field.trix && !this.field.tiny && !this.field.tags;
+            },
+            isSingle() {
+                return this.field.singleLine;
+            },
+            isTrix() {
+                return this.field.trix;
+            },
+            isTiny() {
+                return this.field.tiny;
+            },
+            isTags() {
+                return this.field.tags;
             }
         }
     }
