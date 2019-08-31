@@ -16,9 +16,9 @@ class Translatable extends Field
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
+     * @param string $name
+     * @param string|null $attribute
+     * @param mixed|null $resolveCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $resolveCallback = null)
@@ -38,8 +38,8 @@ class Translatable extends Field
     /**
      * Resolve the given attribute from the given resource.
      *
-     * @param  mixed  $resource
-     * @param  string  $attribute
+     * @param mixed $resource
+     * @param string $attribute
      * @return mixed
      */
     protected function resolveAttribute($resource, $attribute)
@@ -53,7 +53,7 @@ class Translatable extends Field
     /**
      * Set the locales to display / edit.
      *
-     * @param  array  $locales
+     * @param array $locales
      * @return $this
      */
     public function locales(array $locales)
@@ -64,7 +64,7 @@ class Translatable extends Field
     /**
      * Set the locale to display on index.
      *
-     * @param  string $locale
+     * @param string $locale
      * @return $this
      */
     public function indexLocale($locale)
@@ -86,6 +86,41 @@ class Translatable extends Field
     public function trix()
     {
         return $this->withMeta(['trix' => true]);
+    }
+
+
+    /**
+     * Use Trix Editor.
+     */
+    public function tags()
+    {
+        return $this->withMeta(['tags' => true]);
+    }
+
+    /**
+     * use tiny editor
+     * @param array $config
+     * @return mixed
+     */
+    public function tiny($config = [])
+    {
+        $this->asHtml();
+
+        return $this->withMeta(['tiny' => true, 'tiny_config' =>
+            array_merge([
+                'path_absolute' => '/',
+                'plugins' => [
+                    'lists preview hr anchor pagebreak',
+                    'wordcount fullscreen',
+                    'contextmenu directionality',
+                    'paste textcolor colorpicker textpattern'
+                ],
+                'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+                'relative_urls' => false,
+                'use_lfm' => false,
+                'lfm_url' => 'laravel-filemanager'
+            ], $config)
+        ]);
     }
 
     /**
