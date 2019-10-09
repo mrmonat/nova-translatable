@@ -8,10 +8,10 @@
             </slot>
         </div>
         <div class="px-8 py-6" :class="computedWidth">
-            <a 
-                class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none border-primary" 
+            <a
+                class="inline-block font-bold cursor-pointer mr-2 animate-text-color select-none border-primary"
                 :class="{ 'text-60': localeKey !== currentLocale, 'text-primary border-b-2': localeKey === currentLocale }"
-                :key="`a-${localeKey}`" 
+                :key="`a-${localeKey}`"
                 v-for="(locale, localeKey) in field.locales"
                 @click="changeTab(localeKey)"
             >
@@ -19,11 +19,12 @@
             </a>
 
             <textarea
-                ref="field" 
+                ref="field"
                 :id="field.name"
                 class="mt-4 w-full form-control form-input form-input-bordered py-3 min-h-textarea"
                 :class="errorClasses"
                 :placeholder="field.name"
+                :disabled="isReadonly"
                 v-model="value[currentLocale]"
                 v-if="!field.singleLine && !field.trix"
                 @keydown.tab="handleTab"
@@ -39,13 +40,14 @@
                 />
             </div>
 
-            <input 
-                ref="field" 
-                type="text" 
+            <input
+                ref="field"
+                type="text"
                 :id="field.name"
                 class="mt-4 w-full form-control form-input form-input-bordered"
                 :class="errorClasses"
                 :placeholder="field.name"
+                :disabled="isReadonly"
                 v-model="value[currentLocale]"
                 v-if="field.singleLine"
                 @keydown.tab="handleTab"
