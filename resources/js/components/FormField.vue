@@ -2,8 +2,15 @@
     <field-wrapper>
         <div class="w-1/5 px-8 py-6">
             <slot>
-                <form-label :for="field.name">
-                    {{ field.name }}
+                <form-label
+                        :label-for="field.attribute"
+                        :class="{ 'mb-2': showHelpText && field.helpText }"
+                >
+                    {{ fieldLabel }}
+
+                    <span v-if="field.required" class="text-danger text-sm">{{
+                        __('*')
+                    }}</span>
                 </form-label>
             </slot>
         </div>
@@ -144,7 +151,19 @@ export default {
                 'w-1/2': !this.field.trix,
                 'w-4/5': this.field.trix
             }
-        }
+        },
+
+        /**
+        * Return the label that should be used for the field.
+        */
+        fieldLabel() {
+        // If the field name is purposefully an empty string, then let's show it as such
+            if (this.fieldName === '') {
+              return ''
+            }
+
+            return this.fieldName || this.field.singularLabel || this.field.name
+        },
     }
 }
 </script>
