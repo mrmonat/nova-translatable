@@ -29,8 +29,13 @@ class Translatable extends Field
             return __($value);
         }, config('translatable.locales'));
 
+        $rtlLocales = array_map(function ($value) {
+            return $value;
+        }, config('translatable.rtlLocales'));
+
         $this->withMeta([
             'locales' => $locales,
+            'rtlLocales' => $rtlLocales,
             'indexLocale' => app()->getLocale()
         ]);
     }

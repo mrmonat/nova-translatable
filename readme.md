@@ -62,6 +62,24 @@ return [
 ];
 ```
 
+
+### Defining RTL Locales
+To set input text direction for specific localesto RTL, RTL Locales can be defined via config file ```config/translatable.php``` (config file can be created via [spatie/laravel-translatable](https://github.com/spatie/laravel-translatable#installation) package) by adding a ```rtlLocales``` array:
+
+```
+// config/translatable.php
+return [
+    ...
+    'rtlLocales' => [
+            'ar', //arabic
+            'az', //azeri 
+            'fa', // farsi - persian  
+            'he', //hebrew
+            'ur', //urdu
+    ],
+];
+```
+
 Alternatively you can "override" the config locales with the ```locales(...)``` method:
 
 ```
