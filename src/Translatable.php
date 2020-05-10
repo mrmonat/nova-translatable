@@ -26,7 +26,9 @@ class Translatable extends Field
         parent::__construct($name, $attribute, $resolveCallback);
 
         $this->withMeta([
-            'locales' => array_map(static fn ($value) => __($value), config('translatable.locales')),
+            'locales' => array_map(static function ($value) {
+                return __($value);
+            }, config('translatable.locales')),
             'indexLocale' => app()->getLocale(),
             'currentLocale' => app()->getLocale(),
         ]);
