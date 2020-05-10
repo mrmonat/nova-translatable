@@ -86,12 +86,8 @@ export default {
     data() {
         return {
             locales: Object.keys(this.field.locales),
-            currentLocale: null,
+            currentLocale: this.field.currentLocale,
         }
-    },
-
-    mounted() {
-        this.currentLocale = this.locales[0] || null
     },
 
     methods: {

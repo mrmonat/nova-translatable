@@ -27,7 +27,7 @@ export default {
 
     data() {
         return {
-            currentLocale: Object.keys(this.field.locales)[0]
+            currentLocale: this.field.currentLocale
         }
     },
 
