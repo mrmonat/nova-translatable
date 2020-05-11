@@ -24,7 +24,7 @@
             >
                 {{ locale }}
             </a>
-            <div :dir="dir" ref="fieldParent">
+            <div :style="dir" ref="fieldParent">
 
             <textarea
                 ref="field"
@@ -131,7 +131,7 @@ export default {
                     this.$refs.field.focus()
                 }
 
-                this.dir = (this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr'
+                this.dir = "direction: " + ((this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr') + " !important"
                 this.$refs.fieldParent.dir = this.dir
             })
         },
