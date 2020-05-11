@@ -132,7 +132,7 @@ export default {
                 }
 
                 this.dir = "direction: " + ((this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr') + " !important"
-                this.$refs.fieldParent.dir = this.dir
+                this.$refs.fieldParent.style = this.dir
             })
         },
 
