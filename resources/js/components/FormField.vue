@@ -95,7 +95,7 @@ export default {
 
     mounted() {
         this.currentLocale = this.locales[0] || null
-        this.$refs.fieldParent.dir = (this.rtlLocales.includes(this.currentLocale)) ? 'rtl' : 'ltr'
+        this.$refs.fieldParent.style = "direction: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'rtl' : 'ltr') + " !important"
     },
 
     methods: {
