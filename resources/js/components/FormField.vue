@@ -95,7 +95,7 @@ export default {
 
     mounted() {
         this.currentLocale = this.locales[0] || null
-        this.$refs.fieldParent.style = "direction: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'rtl' : 'ltr') + " !important"
+        this.$refs.fieldParent.style = "direction: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'rtl' : 'ltr') + " !important; text-align: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'right' : 'left')
     },
 
     methods: {
@@ -131,7 +131,7 @@ export default {
                     this.$refs.field.focus()
                 }
 
-                this.dir = "direction: " + ((this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr') + " !important"
+                this.dir = "direction: " + ((this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr') + " !important; text-align: " + ((this.rtlLocales.includes(locale)) ? 'right' : 'left')
                 this.$refs.fieldParent.style = this.dir
             })
         },
