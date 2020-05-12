@@ -28,7 +28,7 @@ class Translatable extends Field
         $this->withMeta([
             'locales' => array_map(static function ($value) {
                 return __($value);
-            }, config('translatable.locales')),
+            }, config('translatable.locales', [])),
             'indexLocale' => app()->getLocale(),
             'currentLocale' => app()->getLocale(),
         ]);
