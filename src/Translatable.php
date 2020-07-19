@@ -14,6 +14,13 @@ class Translatable extends Field
     public $component = 'translatable';
 
     /**
+     * The index's locale.
+     *
+     * @var string
+     */
+    protected $indexLocale;
+
+    /**
      * Create a new field.
      *
      * @param  string  $name
@@ -68,6 +75,8 @@ class Translatable extends Field
      */
     public function indexLocale($locale)
     {
+        $this->indexLocale = $locale;
+
         return $this->withMeta(['indexLocale' => $locale]);
     }
 
@@ -112,5 +121,15 @@ class Translatable extends Field
     public function truncate()
     {
         return $this->withMeta(['truncate' => true]);
+    }
+
+    /**
+     * Return the sortable uri key for the field.
+     *
+     * @return string
+     */
+    public function sortableUriKey()
+    {
+        return implode('->', array_filter([$this->attribute, $this->indexLocale]));
     }
 }
