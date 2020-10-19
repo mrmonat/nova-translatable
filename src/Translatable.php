@@ -25,18 +25,16 @@ class Translatable extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $locales = array_map(function ($value) {
-            return __($value);
-        }, config('translatable.locales'));
-
-        $rtlLocales = array_map(function ($value) {
-            return $value;
-        }, config('translatable.rtlLocales'));
-
         $this->withMeta([
-            'locales' => $locales,
-            'rtlLocales' => $rtlLocales,
-            'indexLocale' => app()->getLocale()
+            'locales' => array_map(static function ($value) {
+                return __($value);
+            }, config('translatable.locales', [])),
+            'rtlLocales' => array_map(function ($value) {
+                return $value;
+            }, config('translatable.rtlLocales',['ar'])),
+            'indexLocale' => app()->getLocale(),
+            'currentLocale' => app()->getLocale(),
+
         ]);
     }
 
@@ -75,6 +73,17 @@ class Translatable extends Field
     public function indexLocale($locale)
     {
         return $this->withMeta(['indexLocale' => $locale]);
+    }
+
+    /**
+     * Set the locale to display on detail and form.
+     *
+     * @param  string $locale
+     * @return $this
+     */
+    public function currentLocale($locale)
+    {
+        return $this->withMeta(['currentLocale' => $locale]);
     }
 
     /**

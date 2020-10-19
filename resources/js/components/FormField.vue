@@ -89,7 +89,7 @@ export default {
         return {
             locales: Object.keys(this.field.locales),
             rtlLocales: Object.values(this.field.rtlLocales),
-            currentLocale: null,
+            currentLocale: this.field.currentLocale,
         }
     },
 
