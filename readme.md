@@ -11,6 +11,10 @@ And in the edit view like this:
 
 <img width="400" src="https://mrmonat.de/github/images/nova-spatie-translatable-edit.png">
 
+## Alternative with support for more field types
+If you need support for more field types to be translated, take a look at the official package from spatie:
+https://github.com/spatie/nova-translatable
+
 ## Installation and usage
 You can require this package using composer:
 
