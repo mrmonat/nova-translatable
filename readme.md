@@ -1,3 +1,6 @@
+# Important
+This package will no longer be maintained. Please use https://github.com/spatie/nova-translatable as a replacement. If you do not like the different approach of the spatie package, feel free to fork this repository and release new versions of it.
+
 # Nova Translatable Field
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mrmonat/nova-translatable.svg?style=flat-square)](https://packagist.org/packages/mrmonat/nova-translatable)
 
@@ -10,6 +13,10 @@ It will show up in the detail view like this:
 And in the edit view like this:
 
 <img width="400" src="https://mrmonat.de/github/images/nova-spatie-translatable-edit.png">
+
+## Alternative with support for more field types
+If you need support for more field types to be translated, take a look at the official package from spatie:
+https://github.com/spatie/nova-translatable
 
 ## Installation and usage
 You can require this package using composer:
