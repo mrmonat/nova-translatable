@@ -24,6 +24,7 @@
             >
                 {{ locale }}
             </a>
+            <div :style="dir" ref="fieldParent">
 
             <textarea
                 ref="field"
@@ -59,6 +60,7 @@
                 v-if="field.singleLine"
                 @keydown.tab="handleTab"
             />
+            </div>
 
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
@@ -86,8 +88,14 @@ export default {
     data() {
         return {
             locales: Object.keys(this.field.locales),
+            rtlLocales: Object.values(this.field.rtlLocales),
             currentLocale: this.field.currentLocale,
         }
+    },
+
+    mounted() {
+        this.currentLocale = this.locales[0] || null
+        this.$refs.fieldParent.style = "direction: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'rtl' : 'ltr') + " !important; text-align: " + ((this.rtlLocales.includes(this.currentLocale)) ? 'right' : 'left')
     },
 
     methods: {
@@ -111,7 +119,7 @@ export default {
          * Update the field's internal value.
          */
         handleChange(value) {
-          this.value[this.currentLocale] = value
+            this.value[this.currentLocale] = value
         },
 
         changeTab(locale) {
@@ -122,6 +130,9 @@ export default {
                 } else {
                     this.$refs.field.focus()
                 }
+
+                this.dir = "direction: " + ((this.rtlLocales.includes(locale)) ? 'rtl' : 'ltr') + " !important; text-align: " + ((this.rtlLocales.includes(locale)) ? 'right' : 'left')
+                this.$refs.fieldParent.style = this.dir
             })
         },
 
